@@ -3,15 +3,17 @@ body {
   animation: fadein 2s;
 }
 .status {
-  width: 18px;
-  height: 19px;
+  width: 12px;
+  height: 12px;
   background: red;
   border-radius: 50%;
-  position: absolute;
-  top: 80px;
-  left: 165px;
+  position: fixed;
+  padding: 2em;
+  left: 3rem;
+  top: 6rem;
+  transform: translate(-40%, -40%);
   border: 2px solid white;
-  z-index: 1;
+  z-index: 2;
   padding: 2px;
 }
 #sidebar {
