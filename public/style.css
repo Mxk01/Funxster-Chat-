@@ -69,7 +69,7 @@ body {
   margin: 5px;
   /* Setting max-width,max-height and overflow makes our container scrollable */
   max-height: 895px;
-  max-width: 1916px;
+  max-width: 1300px;
   overflow: auto;
 }
 
@@ -91,7 +91,7 @@ body {
   border-radius: 1.5rem;
   margin-right: 5px;
   margin-bottom: 5px;
-  padding: 1rem;
+  padding: 1.3rem;
 }
 .userAvatar {
   margin-left: 1rem;
@@ -100,6 +100,7 @@ input {
   border: 0;
   border: 2px solid #9c88ff;
   outline: none;
+  word-break: break-word; /* for making input multiline*/
   color: #9c88ff;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -171,4 +172,19 @@ i {
   outline: none;
   cursor: pointer;
   transition: transform 0.5s ease-in, background-color 0.5s ease-out;
+}
+#userArea {
+  display: flex;
+  background-color: transparent !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  margin-right: -5px;
+}
+
+#messageContainer div p {
+  display: flex;
+  flex-wrap: wrap !important;
+  width: 20vw;
+  display: inline !important;
+  margin-right: 30px !important;
 }

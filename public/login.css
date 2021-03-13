@@ -44,3 +44,9 @@ h1 {
   color: #00a8ff;
   font-family: "Jaldi", sans-serif;
 }
+
+#userArea {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+}

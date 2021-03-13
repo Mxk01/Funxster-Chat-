@@ -138,13 +138,16 @@ document.querySelector('#newUser').innerHTML = `${username}
 <span class="status"></span>
         `;
 
-  socket.on('sendMessageToUsers',(msg,user)=>{
+  socket.on('sendMessageToUsers',({received,user})=>{
     let element = document.createElement('div');
-    console.log(user);
+    console.log(received);
        // <img id="avatar" class="userAvatar" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></img>
       element.innerHTML =  `
-      <p>${user}</p>
-        <p> ${msg.received.userMessage}</p>
+      <p><strong>${user.username}</strong></p>
+        <div id="userArea">
+        <p> ${received.userMessage}</p>
+        <img id="avatar" src="https://imgur.com/vP98HlM.jpg"></img>
+        </div>
       <p> ${moment().format('h:mm a')}</p> ` ; 
     
        messageContainer.appendChild(element);

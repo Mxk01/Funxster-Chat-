@@ -9,7 +9,7 @@ let port = process.env.PORT || 3000;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const path = require('path');
-const {joinRoom} = require('./rooms.js');
+const {joinRoom,getCurrentUser} = require('./rooms.js');
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static('public'));
@@ -64,13 +64,12 @@ io.on('connection',(socket)=>{
        
 
           // socket.emit(event,param);
-    socket.on('message',async(received)=>{
+    socket.on('message',(received)=>{
       // console.log(socket.id);
-       User.findById({_id:socket.id}).then((result)=>{
-          console.log(result);
-         io.to(user.room).emit('sendMessageToUsers',{received});
+      let currentUser = getCurrentUser(socket.id);
+       //   console.log(currentUser);
+         io.to(user.room).emit('sendMessageToUsers',{received,user});
 
-       })
 
     });
     
