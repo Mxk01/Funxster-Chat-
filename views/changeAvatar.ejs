@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="sidebar">
+        <h2 id="roomName"></h2>
+         <div id="userInfo"> 
+        <span id="newUser">
+            <img id="avatar" src=" https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg" alt="">     
+        <span class="status"></span>
+        </span>
+        <div id="members-section">
+        <i class="fas fa-user"></i>
+        <span>Users</span>
+      </div>
+        <div id="users">
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="chat-contents">
+     <h1></h1>
+       <div id="user-controls">
+        <input type="text"/>
+        <i id="submitMessage" class="fa fa-paper-plane"></i>
+              </div> 
+
+      <div id="messageContainer">
+         
+      </div>
+    
+       
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.6/qs.min.js" integrity="sha512-3TmPrquYLaAsUmZKXRARTDC5siWhLAdBVqNo4dWpDABBtLU62AaoTaQJEvjxjExcZYurO6i1dnK85k8pPIBlRg==" crossorigin="anonymous"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+  const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix:true});
+  if(!username && !room )
+  {
+    window.location.replace("http://localhost:3000/login");
+
+  }
+   const socket = io("http://localhost:3000");
+  const messageContainer = document.getElementById('messageContainer');
+  const button = document.querySelector('.fa-paper-plane');
+  const h1 =  document.querySelector('h1');
+  const input = document.querySelector('input');
+  const status = document.querySelector('.status');
+  console.log(status);
+  button.addEventListener('click',(e)=>{
+    let element = document.createElement('div');
+
+      let value = input.value;
+
+       // Sending the message to the server to be later passed to other users;
+      socket.emit('message',{userMessage: value})
+      element.innerHTML = `${value}` ; 
+
+
+  })
+
+  socket.on('displayUsers',(users) => {
+    console.log(users);
+    let userContainer = document.getElementById('users');
+    users.result.forEach(user=>{
+      let elem = document.createElement('p');
+      elem.innerText = user.username;
+      userContainer.appendChild(elem); 
+    })
+  });
+  // Receiving message on backend
+  socket.on('userConnected',(user)=>{
+   
+   let element = document.createElement('div');
+      element.classList.add('comment');
+      element.innerHTML = ` ${user.message} has connected` ; 
+        messageContainer.appendChild(element);
+ })
+
+socket.on('userDisconnected',(message)=>{
+   
+   let element = document.createElement('div');
+      element.classList.add('comment');
+       element.innerHTML = message.message ; 
+    
+       messageContainer.appendChild(element);
+ })
+
+
+document.querySelector('#newUser').innerHTML = `${username}
+<div id="avatar"></div>     
+<span class="status"></span>
+        `;
+
+  socket.on('sendMessageToUsers',(msg,user)=>{
+    let element = document.createElement('div');
+    console.log(user);
+       // <img id="avatar" class="userAvatar" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></img>
+      element.innerHTML =  `
+      <p>${user}</p>
+        <p> ${msg.received.userMessage}</p>
+      <p> ${moment().format('h:mm a')}</p> ` ; 
+    
+       messageContainer.appendChild(element);
+       input.value = '';
+  })
+
+ let roomName = document.getElementById('roomName');
+  
+ // Sending event to join room  (getting data from query ) *********** HERE STARTS JOINING ROOMS LOGIC 
+  socket.emit('join-room',{username,room});
+  // Upon joining room display room name;
+  socket.on('userjoinedroom',(user)=>{
+        roomName.innerHTML =    `${ user.user.room.toUpperCase()}`;
+  })
+
+ 
+</script>
+</body>
+</html>

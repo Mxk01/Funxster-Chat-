@@ -1,0 +1,172 @@
+body {
+  display: flex;
+  animation: fadein 2s;
+}
+.status {
+  width: 18px;
+  height: 19px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 80px;
+  left: 165px;
+  border: 2px solid white;
+  z-index: 1;
+  padding: 2px;
+}
+#sidebar {
+  background-color: #2c3e50;
+  width: 30vw;
+  height: 100vh;
+  font-family: "Jaldi", sans-serif;
+  color: white;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+  margin: 0;
+}
+#avatar {
+  background: linear-gradient(
+      217deg,
+      rgba(121, 255, 182, 0.4),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    url("https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg");
+  background-size: cover;
+  display: inline-block;
+
+  position: relative;
+
+  width: 80px;
+  height: 85px;
+  border-radius: 50%;
+}
+
+#roomName {
+  background-color: #9c88ff;
+  text-align: center;
+}
+#sidebar #userInfo {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+#user-controls {
+  margin: 1rem;
+}
+#messageContainer {
+  margin: 5px;
+  /* Setting max-width,max-height and overflow makes our container scrollable */
+  max-height: 895px;
+  max-width: 1916px;
+  overflow: auto;
+}
+
+/* Hiding scrollbar bar */
+#messageContainer::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#messageContainer div {
+  background-color: #00a8ff;
+  font-family: "Jaldi", sans-serif;
+  color: white;
+  height: auto;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  max-width: 60vw;
+  border-radius: 1.5rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 1rem;
+}
+.userAvatar {
+  margin-left: 1rem;
+}
+input {
+  border: 0;
+  border: 2px solid #9c88ff;
+  outline: none;
+  color: #9c88ff;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+#submitMessage {
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 1.2rem;
+  background-color: #8975eb;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s ease-in, background-color 0.5s ease-out;
+}
+
+#submitMessage:hover {
+  background-color: #7666ca;
+}
+#users {
+  font-weight: bold;
+  color: #718395;
+}
+#members-section {
+  margin-top: 1rem;
+  margin: 1rem;
+  display: flex;
+  color: #f7d794;
+  justify-content: space-between;
+}
+i {
+  font-size: 1.3rem;
+}
+#emoji {
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 1.2rem;
+  background-color: #fbbc34;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s ease-in, background-color 0.5s ease-out;
+}
+
+#emoji:hover {
+  background-color: #e7ad2e;
+  transform: scale(1.1);
+}
+#logout {
+  padding: 0.7rem;
+  border: 0;
+  margin-top: 10rem;
+  width: 4vw;
+  border-radius: 1.2rem;
+  background-color: #fbbc34;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+#logout:hover {
+  background-color: #d69c1e;
+}
+#messageContainer #typing {
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 1.2rem;
+  background-color: #8975eb;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s ease-in, background-color 0.5s ease-out;
+}
