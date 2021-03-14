@@ -69,7 +69,7 @@ body {
   margin: 5px;
   /* Setting max-width,max-height and overflow makes our container scrollable */
   max-height: 895px;
-  max-width: 1300px;
+  max-width: 1800px;
   overflow: auto;
 }
 
@@ -79,16 +79,17 @@ body {
 }
 
 #messageContainer div {
-  background-color: #00a8ff;
+  background-color: #2d3436;
   font-family: "Jaldi", sans-serif;
   color: white;
   height: auto;
-  width: 40vw;
+  overflow-x: hidden;
+  width: 25vw;
   display: flex;
   flex-direction: column;
   font-size: 1.1rem;
   max-width: 60vw;
-  border-radius: 1.5rem;
+  border-radius: 2rem;
   margin-right: 5px;
   margin-bottom: 5px;
   padding: 1.3rem;
@@ -186,5 +187,6 @@ i {
   flex-wrap: wrap !important;
   width: 20vw;
   display: inline !important;
+  word-break: break-word; /* for making input multiline*/
   margin-right: 30px !important;
 }
