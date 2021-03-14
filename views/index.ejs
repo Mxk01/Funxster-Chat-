@@ -41,16 +41,26 @@
         <input type="text"/>
         <i id="submitMessage" class="fa fa-paper-plane"></i>
         <i id="emoji" class="fas fa-grin-beam-sweat"></i>
-        <i  id="emoji" class="fas fa-upload"></i>
+        
+        <form action="upload_file.php" method="post" enctype="multipart/form-data">
+           
+          <div class="image-upload">
+            <label for="file-input">
+              <i  id="emoji"   class="fas fa-upload"></i>
+            </label>
+          
+            <input id="file-input" type="file" />
+          <input type="submit" class="circle-btn"/>
+        <form>
 
               </div> 
 
+     
+      </div>
       <div id="messageContainer">
         <div>
          <p id="isTyping"></p>
          </div>
-      </div>
-    
        
 
     </div>
@@ -98,9 +108,13 @@ const logout = document.getElementById('logout');
     let element = document.createElement('div');
 
       let value = input.value;
-
+       if(value=='')
+       {
+          return;
+       }
        // Sending the message to the server to be later passed to other users;
       socket.emit('message',{userMessage: value})
+
       element.innerHTML = `${value}` ; 
 
 
