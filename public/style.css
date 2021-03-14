@@ -1,6 +1,8 @@
 body {
   display: flex;
   animation: fadein 2s;
+  overflow-y:hidden;
+
 }
 .status {
   width: 12px;

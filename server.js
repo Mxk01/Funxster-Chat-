@@ -9,7 +9,7 @@ let port = process.env.PORT || 3000;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const path = require('path');
-const {joinRoom,getCurrentUser} = require('./rooms.js');
+const {joinRoom,getCurrentUser,getUsersFromRoom} = require('./rooms.js');
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static('public'));
@@ -24,6 +24,9 @@ app.get('/login',(req,res)=>{
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
 .then(()=>console.log('Connected to the database'));
 io.on('connection',(socket)=>{
+
+   
+
   socket.on('typing',(message)=>{
      socket.broadcast.emit('typing',{message:'User is typing'})
   })
@@ -36,7 +39,7 @@ io.on('connection',(socket)=>{
       socket.join(user.room);
 
   
-
+    
 
       // Now send back user details via socket.emit
       socket.emit('userjoinedroom',{user});
@@ -50,11 +53,13 @@ io.on('connection',(socket)=>{
          return;
        }
        })
-      
-       User.find({}).then((result)=>{
-       io.to(user.room).emit('displayUsers',{result})
-       });
-
+       // Display users 
+           let users = getUsersFromRoom(user.room);
+         // User.find({}).then((result)=>{
+         io.to(user.room).emit('displayUsers',{users})
+         // io.to(user.room).emit('displayUsers',{users})
+         // });
+        // Display disconnect message 
       socket.on('disconnect', () => {
          socket.broadcast.emit('userDisconnected',{message: `${user.username} has disconnected !`});
    

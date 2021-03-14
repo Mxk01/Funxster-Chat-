@@ -9,7 +9,10 @@ function getCurrentUser(id) {
     return users.find(user => user.id === id);
   }
   
+function getUsersFromRoom(room)
+{
+  return users.filter(user=> user.room ===  room ) // Filtering users that are in the same room 
+}
 
 
-
-module.exports = {joinRoom,getCurrentUser}; 
+module.exports = {joinRoom,getCurrentUser,getUsersFromRoom}; 

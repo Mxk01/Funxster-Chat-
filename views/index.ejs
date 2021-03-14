@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Funxster - Chat with us!</title>
 </head>
 <body>
     <div id="sidebar">
@@ -42,7 +42,7 @@
         <i id="submitMessage" class="fa fa-paper-plane"></i>
         <i id="emoji" class="fas fa-grin-beam-sweat"></i>
         
-        <form action="upload_file.php" method="post" enctype="multipart/form-data">
+        <form action="/upload" method="post" enctype="multipart/form-data">
            
           <div class="image-upload">
             <label for="file-input">
@@ -58,10 +58,10 @@
      
       </div>
       <div id="messageContainer">
-        <div>
+        <!-- <div>
          <p id="isTyping"></p>
          </div>
-       
+        -->
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
@@ -79,8 +79,16 @@ const logout = document.getElementById('logout');
  input.value += emoji;
  });
  trigger.addEventListener('click', () => picker.pickerVisible ? picker.hidePicker() : picker.showPicker(trigger));
+ 
 
  
+
+
+//  socket.on('usersFound',()=>{
+
+//  })
+
+
   const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix:true});
   if(!username && !room )
   {
@@ -114,20 +122,33 @@ const logout = document.getElementById('logout');
        }
        // Sending the message to the server to be later passed to other users;
       socket.emit('message',{userMessage: value})
+        
+      element.innerHTML = `${value}`; 
+      messageContainer.scrollTop = messageContainer.scrollHeight;
 
-      element.innerHTML = `${value}` ; 
 
 
   })
 
-  socket.on('displayUsers',(users) => {
-    console.log(users);
+  socket.on('displayUsers',(activeUsers) => {
+ 
     let userContainer = document.getElementById('users');
-    users.result.forEach(user=>{
+    let singleUser = userContainer.getElementsByTagName('p');
+   console.log(activeUsers.users);
+    activeUsers.users.forEach(user=>{
       let elem = document.createElement('p');
-      elem.innerText = user.username;
-      userContainer.appendChild(elem); 
-    })
+     elem.innerText = user.username;
+     // Checking if username already exists in user list ,if it does don't add to it
+     if(userContainer.innerText.indexOf(user.username) > -1)
+     {
+       return;
+     }
+     else {
+    
+    
+     userContainer.appendChild(elem); 
+     }
+     })
   });
   // Receiving message on backend
   socket.on('userConnected',(user)=>{
