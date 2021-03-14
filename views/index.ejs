@@ -20,7 +20,7 @@
          <div id="userInfo"> 
         <span id="newUser">
             <img id="avatar" src=" https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg" alt="">     
-        <span class="status"></span>
+        <!-- <span class="status"></span> -->
         </span>
         <div id="members-section">
         <i class="fas fa-user"></i>
@@ -104,14 +104,14 @@ const logout = document.getElementById('logout');
   console.log(status);
 
 
-  input.addEventListener('input',(e)=>{
-    socket.emit('typing',{message:'User is typing'})
-  })
+  // input.addEventListener('input',(e)=>{
+  //   socket.emit('typing',{message:'User is typing'})
+  // })
 
 
-  socket.on('typing',(retrieved)=>{
-     document.getElementById('isTyping').innerText = retrieved.message;
-  })
+  // socket.on('typing',(retrieved)=>{
+  //    document.getElementById('isTyping').innerText = retrieved.message;
+  // })
   button.addEventListener('click',(e)=>{
     let element = document.createElement('div');
 
@@ -171,8 +171,14 @@ socket.on('userDisconnected',(message)=>{
 
 document.querySelector('#newUser').innerHTML = `${username}
 <div id="avatar"></div>     
+         `;
+
+        /*
+        document.querySelector('#newUser').innerHTML = `${username}
+<div id="avatar"></div>     
 <span class="status"></span>
         `;
+        */
 
   socket.on('sendMessageToUsers',({received,user})=>{
     let element = document.createElement('div');
