@@ -16,201 +16,103 @@
 </head>
 <body>
     <div id="sidebar">
-        <h2 id="roomName"></h2>
+      
+        
+      <h2 id="roomName"></h2>
          <div id="userInfo"> 
         <span id="newUser">
-            <img id="avatar" src=" https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg" alt="">     
+         <img id="sidebarAvatar" src=" https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg" alt="">    
+            
+              
         <!-- <span class="status"></span> -->
         </span>
         <div id="members-section">
         <i class="fas fa-user"></i>
-        <span>Users</span>
+        <span>Connected users</span>
       </div>
+       
         <div id="users">
-
+      
 
         </div>
+
+        <div id="members-section">
+          <i class="fa fa-users" aria-hidden="true"></i>
+
+          <span>All users</span>
+          
+      
+        </div>
+        <% user.forEach((element) => { %>
+          <h4><%=element.username %></h4> 
+       <% }) %> 
         <button id="logout"><i class="fas fa-sign-out-alt"></i></button>
       </div>
     </div>
 
-
+    
     <div class="chat-contents">
      <h1></h1>
        <div id="user-controls">
         <input type="text"/>
+        
+
         <i id="submitMessage" class="fa fa-paper-plane"></i>
         <i id="emoji" class="fas fa-grin-beam-sweat"></i>
-        
-        <form action="/upload" method="post" enctype="multipart/form-data">
+<!--       
+        <form action="/upload-avatar"  enctype="multipart/form-data"  method="post" >
            
           <div class="image-upload">
             <label for="file-input">
               <i  id="emoji"   class="fas fa-upload"></i>
-            </label>
-          
-            <input id="file-input" type="file" />
+            </label> 
+            <input id="file-input" type="file" name="avatar"  />
+    
           <input type="submit" class="circle-btn"/>
-        <form>
-
+        <form> -->
+          
+          
+          <input type="color" id="head" name="head"
+          value="#353b48">
+           <label for="head">
+            <i  class="fas fa-palette"></i>
+            </label>
               </div> 
-
+        
      
       </div>
-      <div id="messageContainer">
+      
+       <div id="messageContainer">
+         <div id="isTyping" class="comment">
+            Typing Status
+         </div>
         <!-- <div>
          <p id="isTyping"></p>
          </div>
         -->
 
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    </div>
+    
+<audio id="myAudio">
+   <source src="/audio/new_chat.mp3" type="audio/mpeg">
+ </audio>
+
+    <div id="ads">
+      <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: block; height: 600px;" data-ad-client="ca-pub-9115005172944879" data-ad-slot="2357117564" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display: block; border: none; height: 600px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 160px; background-color: transparent; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:160px;height:600px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="160" height="600" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9115005172944879&amp;output=html&amp;h=600&amp;slotname=2357117564&amp;adk=1643517819&amp;adf=2686742703&amp;pi=t.ma~as.2357117564&amp;w=160&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1615746292&amp;rafmt=1&amp;psa=1&amp;format=160x600&amp;url=https%3A%2F%2Fnaruto-arena.net%2Fen&amp;flash=0&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=4&amp;wgl=1&amp;uach=WyJXaW5kb3dzIiwiMTAuMCIsIng4NiIsIiIsIjg5LjAuNDM4OS44MiIsW11d&amp;dt=1615746292110&amp;bpp=13&amp;bdt=484&amp;idt=182&amp;shv=r20210309&amp;cbv=r20190131&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D4ad08d9c60fc0ebd-22468824acba002c%3AT%3D1615077735%3ART%3D1615077735%3AS%3DALNI_Mad046QpYNwLxARwpPP3YMvTACGWA&amp;prev_fmts=0x0&amp;nras=1&amp;correlator=1770954102698&amp;frm=20&amp;pv=1&amp;ga_vid=354181023.1604426576&amp;ga_sid=1615746292&amp;ga_hid=1290655695&amp;ga_fc=0&amp;u_tz=120&amp;u_his=18&amp;u_java=0&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_nplug=3&amp;u_nmime=4&amp;adx=467&amp;ady=15&amp;biw=1903&amp;bih=969&amp;scr_x=0&amp;scr_y=0&amp;eid=31060305&amp;oid=3&amp;pvsid=3594329191903499&amp;pem=207&amp;rx=0&amp;eae=0&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1920%2C0%2C1920%2C1040%2C1920%2C969&amp;vis=1&amp;rsz=%7C%7ClE%7C&amp;abl=CS&amp;pfx=0&amp;fu=8320&amp;bc=31&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;xpc=VR6UH2kitD&amp;p=https%3A//naruto-arena.net&amp;dtd=190" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-google-query-id="CLeDlf6zsO8CFRO3dwodaaUPfQ" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+    <script src="https://github.com/mburakerman/toolgif/blob/master/src/toolgif.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.6/qs.min.js" integrity="sha512-3TmPrquYLaAsUmZKXRARTDC5siWhLAdBVqNo4dWpDABBtLU62AaoTaQJEvjxjExcZYurO6i1dnK85k8pPIBlRg==" crossorigin="anonymous"></script>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
-
-<script>
-
-const picker = new EmojiButton({position:'top-start'});
-const trigger = document.getElementById('emoji');
-const logout = document.getElementById('logout');
- picker.on('emoji', (emoji) => {
- console.log(emoji);
- input.value += emoji;
- });
- trigger.addEventListener('click', () => picker.pickerVisible ? picker.hidePicker() : picker.showPicker(trigger));
+    <script src="/js/index.js">
  
 
- 
-
-
-//  socket.on('usersFound',()=>{
-
-//  })
-
-
-  const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix:true});
-  if(!username && !room )
-  {
-    window.location.replace("http://localhost:3000/login");
-
-  }
-   const socket = io("http://localhost:3000");
-  const messageContainer = document.getElementById('messageContainer');
-  const button = document.querySelector('.fa-paper-plane');
-  const h1 =  document.querySelector('h1');
-  const input = document.querySelector('input');
-  const status = document.querySelector('.status');
-  console.log(status);
-
-
-  // input.addEventListener('input',(e)=>{
-  //   socket.emit('typing',{message:'User is typing'})
-  // })
-
-
-  // socket.on('typing',(retrieved)=>{
-  //    document.getElementById('isTyping').innerText = retrieved.message;
-  // })
-  button.addEventListener('click',(e)=>{
-    let element = document.createElement('div');
-
-      let value = input.value;
-       if(value=='')
-       {
-          return;
-       }
-       // Sending the message to the server to be later passed to other users;
-      socket.emit('message',{userMessage: value})
-        
-      element.innerHTML = `${value}`; 
-      messageContainer.scrollTop = messageContainer.scrollHeight;
-
-
-
-  })
-
-  socket.on('displayUsers',(activeUsers) => {
- 
-    let userContainer = document.getElementById('users');
-    let singleUser = userContainer.getElementsByTagName('p');
-   console.log(activeUsers.users);
-    activeUsers.users.forEach(user=>{
-      let elem = document.createElement('p');
-     elem.innerText = user.username;
-     // Checking if username already exists in user list ,if it does don't add to it
-     if(userContainer.innerText.indexOf(user.username) > -1)
-     {
-       return;
-     }
-     else {
-    
-    
-     userContainer.appendChild(elem); 
-     }
-     })
-  });
-  // Receiving message on backend
-  socket.on('userConnected',(user)=>{
-   
-   let element = document.createElement('div');
-      element.classList.add('comment');
-      element.innerHTML = ` ${user.message} has connected` ; 
-        messageContainer.appendChild(element);
- })
-
-socket.on('userDisconnected',(message)=>{
-   
-   let element = document.createElement('div');
-      element.classList.add('comment');
-       element.innerHTML = message.message ; 
-    
-       messageContainer.appendChild(element);
- })
-
-
-document.querySelector('#newUser').innerHTML = `${username}
-<div id="avatar"></div>     
-         `;
-
-        /*
-        document.querySelector('#newUser').innerHTML = `${username}
-<div id="avatar"></div>     
-<span class="status"></span>
-        `;
-        */
-
-  socket.on('sendMessageToUsers',({received,user})=>{
-    let element = document.createElement('div');
-    console.log(received);
-       // <img id="avatar" class="userAvatar" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></img>
-      element.innerHTML =  `
-      <p><strong>${user.username}</strong></p>
-        <div id="userArea">
-        <p> ${received.userMessage}</p>
-        <img id="avatar" src="https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg"></img>
-        </div>
-      <p> ${moment().format('h:mm a')}</p> ` ; 
-    
-       messageContainer.appendChild(element);
-       input.value = '';
-  })
-
- let roomName = document.getElementById('roomName');
-  
- // Sending event to join room  (getting data from query ) *********** HERE STARTS JOINING ROOMS LOGIC 
-  socket.emit('join-room',{username,room});
-  // Upon joining room display room name;
-  socket.on('userjoinedroom',(user)=>{
-        roomName.innerHTML =    `${ user.user.room.toUpperCase()}`;
-  })
-
-
-  logout.addEventListener('click',(e)=>{
-    window.location.replace("http://localhost:3000");
-    socket.emit('disconnect',{});
-  })
- 
 </script>
 </body>
 </html>

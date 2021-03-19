@@ -1,8 +1,8 @@
 body {
   display: flex;
   animation: fadein 2s;
-  overflow-y:hidden;
-
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 .status {
   width: 12px;
@@ -73,6 +73,7 @@ body {
   max-height: 895px;
   max-width: 1800px;
   overflow: auto;
+  transition: height 1s;
 }
 
 /* Hiding scrollbar bar */
@@ -186,6 +187,7 @@ i {
 
 #messageContainer div p {
   display: flex;
+  margin-top: 2rem;
   flex-wrap: wrap !important;
   width: 20vw;
   display: inline !important;
@@ -195,12 +197,118 @@ i {
 .fa-upload {
   background-color: tomato !important;
 }
-input[type="file"] {
+input[type="file"],
+input[type="color"] {
   display: none;
+}
+
+.fa-palette {
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 1.2rem;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.5s ease-in, background-color 0.5s ease-out;
+  background-color: thistle;
 }
 #user-controls {
   display: flex;
 }
 #user-controls i {
   margin: 5px;
+}
+#preview {
+  position: relative;
+}
+#ads {
+  background-color: #e0e0e0f3;
+  width: 15vw;
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Jaldi", sans-serif;
+  color: white;
+}
+
+#status div {
+  background-color: rgb(2, 211, 47);
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+  border-radius: 50px;
+}
+#users p {
+  display: flex;
+  flex-direction: row;
+}
+
+#upload-button {
+  padding: 18px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: #08f;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  transition: background-color ease-out 120ms;
+  position: absolute;
+  right: -5%;
+  bottom: 0%;
+}
+
+#upload-button:hover {
+  background-color: #45a;
+}
+#avatar:hover {
+  background: linear-gradient(to right, transparent, rgba(31, 13, 11, 0.541)),
+    url("https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg");
+  background-size: cover;
+  align-items: center;
+}
+
+#newMessage > #userArea > #avatar:hover {
+  background: linear-gradient(to right, transparent, rgba(31, 13, 11, 0.541)),
+    url("https://p.favim.com/orig/2018/11/09/anime-icons-anime-icon-Favim.com-6561037.jpg");
+  background-size: cover;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  #ads {
+    display: none;
+  }
+  #sidebar {
+    height: 100%;
+  }
+  input,
+  i {
+    height: 20vh !important;
+  }
+}
+#sidebarAvatar {
+  display: inline-block;
+
+  position: relative;
+
+  width: 80px;
+  height: 85px;
+  border-radius: 50%;
+}
+h4 {
+  color: #718395;
+}
+#isTyping {
+  position: fixed;
+  background-color: #a29bfe;
+  z-index: 1;
+  box-shadow: 3px 3px 13px -5px rgba(143, 247, 232, 1);
 }

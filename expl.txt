@@ -1,0 +1,4 @@
+1.Make a message when  a user changes theme 
+2.Make sure each user has individual avatars (not the same thru sockets)
+E.g dababy post has dababy avatar, gigel post has gigel avatar 
+3.Youtube command (optional) and anime 

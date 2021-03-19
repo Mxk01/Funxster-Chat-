@@ -4,7 +4,8 @@ let userSchema = new Schema(
     {
         _id:{type:String},
         username:{type:String},
-        room:{type:String}
+        room:{type:String},
+        url:{type:String}
     }
 )
 
